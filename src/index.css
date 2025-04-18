@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font families for different scripts */
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+  unicode-range: U+3000-30FF, U+FF00-FFEF, U+4E00-9FAF;
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+  unicode-range: U+AC00-D7AF, U+1100-11FF, U+3130-318F;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF;
+}
+
+:root {
+  --primary-color: #4B7BFF;
+  --primary-color-dark: #3A6AEF;
+  --bg-dark: #0a1026;
+  --bg-darker: #050a18;
+  --error-color: #EF4444;
+}
+
+.dark {
+  --text-color: rgb(255, 255, 255);
+  --text-color-secondary: rgba(255, 255, 255, 0.7);
+}
+
+.light {
+  --text-color: rgb(0, 0, 0);
+  --text-color-secondary: rgba(0, 0, 0, 0.7);
+}
+
+@layer base {
+  .text-primary {
+    color: var(--primary-color);
+  }
+  
+  .text-content {
+    color: var(--text-color);
+  }
+  
+  .text-content-secondary {
+    color: var(--text-color-secondary);
+  }
+  
+  .text-translation {
+    font-family: 'Noto Sans', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans SC', sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(75, 123, 255, 0.7),
+                 0 0 20px rgba(75, 123, 255, 0.5),
+                 0 0 30px rgba(75, 123, 255, 0.3),
+                 0 0 40px rgba(75, 123, 255, 0.2);
+  }
+  
+  .text-glow-strong {
+    text-shadow: 0 0 10px rgba(75, 123, 255, 0.9),
+                 0 0 20px rgba(75, 123, 255, 0.7),
+                 0 0 30px rgba(75, 123, 255, 0.5),
+                 0 0 40px rgba(75, 123, 255, 0.3);
+  }
+  
+  .break-words {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes wordPop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.recorded-text {
+  color: var(--recorded-text-color);
+  transition: color 0.3s ease;
+}
+
+.start-message {
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.stop-message {
+  color: var(--error-color);
+  transition: color 0.3s ease;
+}
+
+@keyframes dots {
+  0%, 20% {
+    content: ".";
+  }
+  40% {
+    content: "..";
+  }
+  60%, 80% {
+    content: "...";
+  }
+}
+
+.dots::after {
+  content: '';
+  animation: dots 1.5s steps(1) infinite;
+  display: inline-block;
+  min-width: 1.5em;
+}
+
